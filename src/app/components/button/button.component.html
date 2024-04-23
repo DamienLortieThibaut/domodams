@@ -1,9 +1,7 @@
-<div>
-    <button
-        type="button"
-        class="{{ class }}"
-        [disabled]="disabled"
-        (click)="action()">
-        {{ label }}
-    </button>
-</div>
+<button
+    type="button"
+    [disabled]="disabled"
+    (click)="action()"
+    class="w-full h-full">
+    {{ label }}
+</button>
