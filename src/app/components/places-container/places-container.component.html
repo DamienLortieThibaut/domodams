@@ -25,7 +25,7 @@
         />
         <label for="imagePlace">Sélectionner la photo:</label>
         <div>
-          <img *ngFor="let image of images" [src]="image" [class.selected]="selectedImage === image" (click)="updateValueImage(image)" class="w-1/6 rounded-lg my-10">
+          <img *ngFor="let image of images" [src]="image" [class.selected]="selectedImage === image" (click)="updateValueImage(image)" class="w-1/6 rounded-lg mx-10">
         </div>
         <button type="submit">Ajouter</button>
       </form>
