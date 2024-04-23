@@ -60,7 +60,7 @@
                             </tr>
                             <tr
                                 class="border-b-2"
-                                *ngFor="let action of actions">
+                                *ngFor="let action of place.actions">
                                 <td>
                                     <div
                                         class="rounded-lg bg-red-500 w-4 h-4"></div>
@@ -88,7 +88,7 @@
                                         type="text"
                                         id="name"
                                         name="name"
-                                        value="action.name"
+                                        value="{{ action.name }}"
                                         required />
                                 </td>
                                 <td>
@@ -96,7 +96,7 @@
                                         type="text"
                                         id="description"
                                         name="description"
-                                        value="action.description"
+                                        value="{{ action.description }}"
                                         required />
                                 </td>
                                 <td class="flex flex-row gap-2 justify-center">
