@@ -1,11 +1,12 @@
 <div class="row-place flex items-center justify-between mb-2">
     <div class="flex items-center">
-        <img class="mr-3 isDisabled" src="../../../assets/{{place.image}}" alt="{{place.name}}">
+        <img
+            class="mr-3"
+            src="../../../assets/{{ place.image }}"
+            alt="{{ place.name }}" />
         <h3>{{ place.name }}</h3>
     </div>
-    <div class="flex items-center">
-        Active: {{currentState}}
-    </div>
+    <div class="flex items-center">Active: {{ currentState }}</div>
     <div>
         <i class='bx bxs-cog'></i>
         <button class="activation" (click)="forceState()">Forcer l'activation</button>

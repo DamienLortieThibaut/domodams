@@ -1,7 +1,14 @@
 
 <div class="timeline flex flex-col justify-center items-center w-full my-10">
     <h2>Timer</h2>
-    <input type="range" class="w-full my-3" min="0" max="1439" [value]="rangeValue" (input)="updateTimer($event)">
+    <input
+        type="range"
+        class="w-full"
+        min="0"
+        max="1439"
+        [value]="rangeValue"
+        (input)="updateTimer($event)" />
+    <div>    
     <div class="flex items-center">
         <p class="timeAccelerator mr-5 flex justify-end"><</p>
         <button class="gestioningTime" (click)="substractHalfHour()">- 30 min</button>
