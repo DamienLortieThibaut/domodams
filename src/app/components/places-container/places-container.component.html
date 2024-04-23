@@ -1,0 +1,7 @@
+<div class="places-container">
+    <h1>Liste des lieux</h1>
+    
+    <div *ngFor="let place of placesData" class="place-card">
+      <app-row-place [place]="place"></app-row-place>
+    </div>
+  </div>
