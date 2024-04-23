@@ -8,8 +8,114 @@
     </div>
     <div class="flex items-center">Active: {{ currentState }}</div>
     <div>
-        <i class='bx bxs-cog'></i>
-        <button class="activation" (click)="forceState()">Forcer l'activation</button>
-        <button class="delete" (click)="supprimer.emit(place)">Supprimer</button>
+        <i class="bx bxs-cog" (click)="showSettings()"></i>
+        <button class="activation" (click)="forceState()">
+            Forcer l'activation
+        </button>
+        <button class="delete" (click)="supprimer.emit(place)">
+            Supprimer
+        </button>
+    </div>
+</div>
+
+<div class="flex justify-center items-center h-screen absolute" *ngIf="show">
+    <div
+        class="fixed inset-0 px-2 z-10 overflow-hidden flex items-center justify-center">
+        <div
+            class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+        <div class="bg-white rounded-md shadow-xl overflow-hidden z-50">
+            <div class="p-4 w-full">
+                <div class="flex flex-col">
+                    <div class="flex flex-row justify-stretch gap-4">
+                        <div>
+                            <h3 class="text-2xl font-semibold">
+                                {{ place.name }}
+                            </h3>
+                        </div>
+                        <div>
+                            <img
+                                class="mr-3 w-28 h-28"
+                                src="../../../assets/{{ place.image }}"
+                                alt="{{ place.name }}" />
+                        </div>
+                        <app-button
+                            class="border"
+                            label="Modifier"></app-button>
+                    </div>
+
+                    <div class="flex flex-col py-8">
+                        <div class="flex justify-center">
+                            <h2 class="text-xl text-black font-semibold">
+                                Programmation
+                            </h2>
+                        </div>
+                        <table class="w-auto">
+                            <tr>
+                                <th>Activé</th>
+                                <th>Heure début</th>
+                                <th>Heure fin</th>
+                                <th>Nom</th>
+                                <th>Description</th>
+                                <th>Action</th>
+                            </tr>
+                            <tr
+                                class="border-b-2"
+                                *ngFor="let action of place.actions">
+                                <td>
+                                    <div
+                                        class="rounded-lg bg-red-500 w-4 h-4"></div>
+                                </td>
+                                <td>
+                                    <input
+                                        type="time"
+                                        id="hStart"
+                                        name="hStart"
+                                        min="00:00"
+                                        max="23:59"
+                                        required />
+                                </td>
+                                <td class="justify-center">
+                                    <input
+                                        type="time"
+                                        id="hEnd"
+                                        name="hEnd"
+                                        min="00:00"
+                                        max="23:59"
+                                        required />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        value="{{ action.name }}"
+                                        required />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        id="description"
+                                        name="description"
+                                        value="{{ action.description }}"
+                                        required />
+                                </td>
+                                <td class="flex flex-row gap-2 justify-center">
+                                    <app-button
+                                        class="border"
+                                        label="Supprimer"></app-button>
+                                    <app-button
+                                        class="border"
+                                        label="Modifier"></app-button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <app-button
+                        class="border"
+                        label="Retour"
+                        (click)="showSettings()"></app-button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
