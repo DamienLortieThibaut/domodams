@@ -6,5 +6,18 @@ import { Component } from '@angular/core';
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
-
+  socialNetwork = [
+    {
+      path: "../../../assets/tiktok.png",
+      label: "TikTok"
+    },
+    {
+      path: "../../../assets/instagram.png",
+      label: "Instagram"
+    },
+    {
+      path: "../../../assets/facebook.png",
+      label: "Facebook"
+    }
+  ];
 }
