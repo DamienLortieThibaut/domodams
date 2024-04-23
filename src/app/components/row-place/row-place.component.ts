@@ -45,7 +45,6 @@ export class RowPlaceComponent implements OnInit{
        let startTime = action.startdAt.getHours() * 60 + action.startdAt.getMinutes();
        let endTime = action.endAt.getHours() * 60 + action.endAt.getMinutes();
    
-       console.log(currentTime, startTime, endTime);
        if (currentTime >= startTime && currentTime <= endTime) {
            newState = true;
        }
