@@ -1,0 +1,9 @@
+<div *ngIf="logs.length > 0">
+    Logs:
+    <div *ngFor="let log of logs">
+        <div class="flex flex-col justify-between">
+            <div class="text-lg font-bold">{{ log.text }}</div>
+            <div class="text-lg">{{ log.created_at }}</div>
+        </div>
+    </div>
+</div>  
