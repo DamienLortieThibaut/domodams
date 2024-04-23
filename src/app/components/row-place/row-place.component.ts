@@ -26,6 +26,7 @@ export class RowPlaceComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.currentState = false;
     setInterval(() => {
      this.update();
     }, 1000);
@@ -33,43 +34,42 @@ export class RowPlaceComponent implements OnInit{
 
   update(): void {
     let currentDate = this.timer_service.getCurrentTime();
-
-    let currentTime = currentDate.getHours() + ":" + currentDate.getMinutes();
-
+    let currentTime = currentDate.getHours() * 60 + currentDate.getMinutes();
+   
+    // Réinitialiser l'état actuel avant de commencer la boucle
+    let newState = false;
+   
     this.place.actions.forEach(action => {
-
-      if(this.forcedState) return;
-      let startTime = action.startdAt.getHours() + ":" + action.startdAt.getMinutes();
-      let endTime = action.endAt.getHours() + ":" + action.endAt.getMinutes();
-
-      console.log(currentTime >= startTime && currentTime <= endTime)
-      if (currentTime >= startTime && currentTime <= endTime) {
-        if(!this.currentState) {
-          let log: Log = {
-            text: "Allumage de " + this.place.name + " à " + new Date().getHours() + ":" + new Date().getMinutes(),
-            created_at: currentDate
-          }
-  
-          this.log_service.addLog(log);
-        }
-        this.currentState = action.isActived;
-        
-       
-      } else {
-        if(this.currentState) {
-          
-          this.currentState = false;
-          let log: Log = {
-            text: "Extinction de " + this.place.name + " à " + new Date().getHours() + ":" + new Date().getMinutes(),
-            created_at: currentDate
-          }
-
-          this.log_service.addLog(log);
-        }
-        
-      }
+       if(this.forcedState) return;
+   
+       let startTime = action.startdAt.getHours() * 60 + action.startdAt.getMinutes();
+       let endTime = action.endAt.getHours() * 60 + action.endAt.getMinutes();
+   
+       console.log(currentTime, startTime, endTime);
+       if (currentTime >= startTime && currentTime <= endTime) {
+           newState = true;
+       }
     });
-  }
+
+    if(newState !== this.currentState) {
+        if(newState) {
+            let log: Log = {
+                text: "Allumage de " + this.place.name + " à " + currentDate.getHours() + ":" + currentDate.getMinutes(),
+                created_at: currentDate
+            }
+            this.log_service.addLog(log);
+        } else {
+            let log: Log = {
+                text: "Extinction de " + this.place.name + " à " + currentDate.getHours() + ":" + currentDate.getMinutes(),
+                created_at: currentDate
+            }
+            this.log_service.addLog(log);
+        }
+        this.currentState = newState;
+    }
+}
+
+   
 
   forceState(): void {
     this.forcedState = !this.forcedState;
