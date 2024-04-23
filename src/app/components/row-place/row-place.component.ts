@@ -1,4 +1,4 @@
-import { Component, Input  } from '@angular/core';
+import { Component, Input, Output, EventEmitter  } from '@angular/core';
 import { Place } from '../../models/place';
 
 @Component({
@@ -8,4 +8,5 @@ import { Place } from '../../models/place';
 })
 export class RowPlaceComponent {
   @Input() place: Place;
+  @Output() supprimer = new EventEmitter<Place>();
 }

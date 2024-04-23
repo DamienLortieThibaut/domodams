@@ -6,7 +6,6 @@ import { AppComponent } from './pages/app-page/app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ButtonComponent } from './components/button/button.component';
-import { RowComponent } from './components/row/row.component';
 import { LogsComponent } from './components/logs/logs.component';
 import { RowPlaceComponent } from './components/row-place/row-place.component';
 import { PlacesContainerComponent } from './components/places-container/places-container.component';
@@ -20,7 +19,6 @@ import { TimelineComponent } from './components/timeline/timeline.component'
     HeaderComponent,
     FooterComponent,
     ButtonComponent,
-    RowComponent,
     LogsComponent,
     RowPlaceComponent,
     PlacesContainerComponent,
