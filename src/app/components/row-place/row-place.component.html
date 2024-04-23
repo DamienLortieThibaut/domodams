@@ -6,5 +6,9 @@
             alt="{{ place.name }}" />
         <h3>{{ place.name }}</h3>
     </div>
-    <app-button label="Forçage" class="bg-cyan-300"></app-button>
+    <div class="flex items-center">Active: {{ currentState }}</div>
+    <div>
+        <button (click)="forceState()">Forcage</button>
+        <button (click)="supprimer.emit(place)">Supprimer</button>
+    </div>
 </div>

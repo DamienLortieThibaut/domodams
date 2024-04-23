@@ -13,8 +13,11 @@ export class LogsComponent implements OnInit {
 
   constructor(private log_service: LogService) { }
 
-  async ngOnInit() {
-    this.logs = await this.log_service.getLogs();
+   ngOnInit() {
+    this.logs = this.log_service.getLogs();
+    setInterval( () => {
+      this.logs = this.log_service.getLogs();
+    }, 60000)
   }
 
   // DD/MM/YYYY HH:MM:SS with leading zeros
@@ -25,7 +28,7 @@ export class LogsComponent implements OnInit {
     const hours = date.getHours().toString().padStart(2, '0');
     const minutes = date.getMinutes().toString().padStart(2, '0');
     const seconds = date.getSeconds().toString().padStart(2, '0');
-    
+
     return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
   }
   

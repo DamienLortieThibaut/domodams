@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TimerService } from '../../services/timer/timer.service';
 
 @Component({
   selector: 'app-timer',
@@ -10,15 +11,22 @@ export class TimerComponent {
   // timer that start at current time
   timer = new Date();
   timerInterval: any;
+  rangeValue: number;
 
-  constructor() {
+
+  constructor(private timer_service: TimerService) {
+
+  }
+
+  ngOnInit() {
+    this.setRangeValue();
     this.timerInterval = setInterval(() => {
       this.timer.setSeconds(this.timer.getSeconds() + 1);
+      this.setRangeValue();
     }, 1000);
   }
 
   ngOnDestroy() {
-    clearInterval(this.timerInterval);
   }
 
   // HH:MM:SS with leading zeros
@@ -30,12 +38,29 @@ export class TimerComponent {
     return `${hours}:${minutes}:${seconds}`;
   }
 
-  addHalfHour() {
+  addHalfHour(): void {
     this.timer.setMinutes(this.timer.getMinutes() + 30);
+    this.timer_service.addHalfHour();
   }
 
-  substractHalfHour() {
+  substractHalfHour(): void {
     this.timer.setMinutes(this.timer.getMinutes() - 30);
+    this.timer_service.substractHalfHour();
+  }
+
+  updateTimer(event: Event) {
+    const minutes = parseInt((event.target as HTMLInputElement).value, 10);
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+    this.timer.setHours(hours);
+    this.timer.setMinutes(remainingMinutes);
+    this.timer_service.setTime(hours, remainingMinutes);
+  }
+
+  setRangeValue() {
+    const hours = this.timer.getHours();
+    const minutes = this.timer.getMinutes();
+    this.rangeValue = hours * 60 + minutes;
   }
 
 }
