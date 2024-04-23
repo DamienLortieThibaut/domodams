@@ -7,10 +7,13 @@ export class TimerService {
 
   timer = new Date();
   timerInterval: any;
-  
+  accelerationLevel = 1;
+
   constructor() {
     this.timerInterval = setInterval(() => {
-      this.timer.setSeconds(this.timer.getSeconds() + 1);
+      for(let i = 0; i < this.accelerationLevel; i++) {
+        this.timer.setSeconds(this.timer.getSeconds() + 1);
+      }
     }, 1000);
   }
 

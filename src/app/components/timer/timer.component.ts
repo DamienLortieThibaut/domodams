@@ -12,6 +12,7 @@ export class TimerComponent {
   timer = new Date();
   timerInterval: any;
   rangeValue: number;
+  accelerationLevel = 1;
 
 
   constructor(private timer_service: TimerService) {
@@ -27,7 +28,25 @@ export class TimerComponent {
   }
 
   ngOnDestroy() {
+    clearInterval(this.timer_service.timerInterval);
+
   }
+
+  accelerateTime(): void {
+    if (this.accelerationLevel < 8) {
+      this.accelerationLevel *= 2;
+    } else {
+      this.accelerationLevel = 8;
+    }
+  }
+
+  resetTimer(): void {
+    this.timer_service.timer = new Date();
+    this.timer_service.accelerationLevel = 1;
+    this.timer = new Date();
+    this.setRangeValue();
+  }
+  
 
   // HH:MM:SS with leading zeros
   formattedTime(date: Date): string {
@@ -55,6 +74,8 @@ export class TimerComponent {
     this.timer.setHours(hours);
     this.timer.setMinutes(remainingMinutes);
     this.timer_service.setTime(hours, remainingMinutes);
+    this.accelerationLevel = 1;
+
   }
 
   setRangeValue() {
@@ -62,5 +83,7 @@ export class TimerComponent {
     const minutes = this.timer.getMinutes();
     this.rangeValue = hours * 60 + minutes;
   }
+
+
 
 }

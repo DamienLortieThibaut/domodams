@@ -1,0 +1,39 @@
+.timeline {
+    h2 {
+        font-size: 30px;
+        font-weight: 500;
+        
+    }
+
+    button.gestioningTime {
+        padding: 5px 10px;
+        background: none;
+        border-radius: 5px;
+        outline: solid 2px black;
+        font-weight: 500;
+    }
+    button.gestioningTime:hover {
+        background: black;
+        color: white;
+    }
+
+    .center-timer {
+        h3 {
+            font-size: 35px;
+        }
+    }
+
+    .timeAccelerator {
+        width: 200px;
+        font-size: 30px;
+        cursor: pointer;
+    }
+    .bx-reset {
+        font-size: 30px;
+        cursor: pointer;
+    }
+    
+    .bx-reset:hover {
+        color: red;
+    }
+}
