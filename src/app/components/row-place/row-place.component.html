@@ -4,8 +4,11 @@
         <h3>{{ place.name }}</h3>
     </div>
     <div class="flex items-center">
+        Active: {{currentState}}
+    </div>
+    <div>
         <i class='bx bxs-cog'></i>
-        <button class="activation">Forcer l'activation</button>
+        <button class="activation" (click)="forceState()">Forcer l'activation</button>
         <button class="delete" (click)="supprimer.emit(place)">Supprimer</button>
     </div>
 </div>

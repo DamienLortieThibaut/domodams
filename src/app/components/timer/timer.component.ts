@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TimerService } from '../../services/timer/timer.service';
 
 @Component({
   selector: 'app-timer',
@@ -11,12 +12,11 @@ export class TimerComponent {
   timer = new Date();
   timerInterval: any;
   rangeValue: number;
+  accelerationLevel = 1;
 
 
-  constructor() {
-    this.timerInterval = setInterval(() => {
-      this.timer.setSeconds(this.timer.getSeconds() + 1);
-    }, 1000);
+  constructor(private timer_service: TimerService) {
+
   }
 
   ngOnInit() {
@@ -28,8 +28,25 @@ export class TimerComponent {
   }
 
   ngOnDestroy() {
-    clearInterval(this.timerInterval);
+    clearInterval(this.timer_service.timerInterval);
+
   }
+
+  accelerateTime(): void {
+    if (this.accelerationLevel < 8) {
+      this.accelerationLevel *= 2;
+    } else {
+      this.accelerationLevel = 8;
+    }
+  }
+
+  resetTimer(): void {
+    this.timer_service.timer = new Date();
+    this.timer_service.accelerationLevel = 1;
+    this.timer = new Date();
+    this.setRangeValue();
+  }
+  
 
   // HH:MM:SS with leading zeros
   formattedTime(date: Date): string {
@@ -40,12 +57,14 @@ export class TimerComponent {
     return `${hours}:${minutes}:${seconds}`;
   }
 
-  addHalfHour() {
+  addHalfHour(): void {
     this.timer.setMinutes(this.timer.getMinutes() + 30);
+    this.timer_service.addHalfHour();
   }
 
-  substractHalfHour() {
+  substractHalfHour(): void {
     this.timer.setMinutes(this.timer.getMinutes() - 30);
+    this.timer_service.substractHalfHour();
   }
 
   updateTimer(event: Event) {
@@ -54,6 +73,9 @@ export class TimerComponent {
     const remainingMinutes = minutes % 60;
     this.timer.setHours(hours);
     this.timer.setMinutes(remainingMinutes);
+    this.timer_service.setTime(hours, remainingMinutes);
+    this.accelerationLevel = 1;
+
   }
 
   setRangeValue() {

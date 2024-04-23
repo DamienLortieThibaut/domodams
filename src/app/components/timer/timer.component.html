@@ -9,11 +9,16 @@
             <h3 class="mx-10">{{formattedTime(timer)}}</h3>
             <div class="flex items-center">
                 <p class="mr-3">Temps x1</p>
-                <i class='bx bx-reset' ></i>
+                <i class='bx bx-reset' (click)="resetTimer()" ></i>
             </div>
         </div>
         <button class="gestioningTime" (click)="addHalfHour()">+ 30 min</button>
-        <p class="timeAccelerator ml-5">>></p>
+        <p class="timeAccelerator mr-5 flex justify-start ml-5" (click)="accelerateTime()">
+            <ng-container *ngIf="accelerationLevel === 1">></ng-container>
+            <ng-container *ngIf="accelerationLevel === 2">>></ng-container>
+            <ng-container *ngIf="accelerationLevel === 4">>>></ng-container>
+            <ng-container *ngIf="accelerationLevel === 8">>>>></ng-container>
 
+        </p>
     </div>
 </div>
