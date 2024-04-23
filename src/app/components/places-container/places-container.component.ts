@@ -117,4 +117,9 @@ export class PlacesContainerComponent {
       ]
     }
   ];
+
+  supprimerPlace(place: Place): void {
+    this.placesData = this.placesData.filter(p => p !== place);
+  }
+  
 }
