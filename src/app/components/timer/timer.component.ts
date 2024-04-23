@@ -22,9 +22,12 @@ export class TimerComponent {
   ngOnInit() {
     this.setRangeValue();
     this.timerInterval = setInterval(() => {
-      this.timer.setSeconds(this.timer.getSeconds() + 1);
-      this.setRangeValue();
+      this.timer = this.timer_service.getCurrentTime();
     }, 1000);
+  }
+
+  refresh() {
+    this.timer = this.timer_service.getCurrentTime();
   }
 
   ngOnDestroy() {
@@ -34,17 +37,31 @@ export class TimerComponent {
 
   accelerateTime(): void {
     if (this.accelerationLevel < 8) {
-      this.accelerationLevel *= 2;
+      this.accelerationLevel = this.accelerationLevel * 2;
+      this.timer_service.setAccelerationLevel(this.accelerationLevel);
     } else {
-      this.accelerationLevel = 8;
+      this.timer_service.setAccelerationLevel(8);
     }
+    
+    this.refresh();
+  }
+
+  decelearateTime(): void {
+    if (this.accelerationLevel > 1) {
+      this.accelerationLevel = this.accelerationLevel / 2;
+      this.timer_service.setAccelerationLevel(this.accelerationLevel);
+    } else {
+      this.timer_service.setAccelerationLevel(1);
+    }
+    this.refresh();
   }
 
   resetTimer(): void {
-    this.timer_service.timer = new Date();
-    this.timer_service.accelerationLevel = 1;
+    this.timer_service.resetTime();
+    this.accelerationLevel = 1;
     this.timer = new Date();
     this.setRangeValue();
+    this.refresh();
   }
   
 
@@ -53,7 +70,6 @@ export class TimerComponent {
     const hours = date.getHours().toString().padStart(2, '0');
     const minutes = date.getMinutes().toString().padStart(2, '0');
     const seconds = date.getSeconds().toString().padStart(2, '0');
-    
     return `${hours}:${minutes}:${seconds}`;
   }
 
@@ -65,6 +81,7 @@ export class TimerComponent {
   substractHalfHour(): void {
     this.timer.setMinutes(this.timer.getMinutes() - 30);
     this.timer_service.substractHalfHour();
+    this.refresh();
   }
 
   updateTimer(event: Event) {
@@ -74,7 +91,7 @@ export class TimerComponent {
     this.timer.setHours(hours);
     this.timer.setMinutes(remainingMinutes);
     this.timer_service.setTime(hours, remainingMinutes);
-    this.accelerationLevel = 1;
+    this.refresh();
 
   }
 
