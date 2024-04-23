@@ -11,7 +11,7 @@ import {RowPlaceComponent} from './components/row-place/row-place.component'
 import {PlacesContainerComponent} from './components/places-container/places-container.component'
 import {ReactiveFormsModule} from '@angular/forms'
 import {TimerComponent} from './components/timer/timer.component'
-import {FormComponent} from './components/form/form.component'
+import {FormComponent} from './components/form/form.component';
 
 @NgModule({
     declarations: [
