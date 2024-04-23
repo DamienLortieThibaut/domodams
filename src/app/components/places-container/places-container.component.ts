@@ -125,7 +125,26 @@ export class PlacesContainerComponent implements OnInit {
     }
   ];
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder) {
+    this.placesData.forEach(place => {
+      let startDate = new Date();
+      let endDate = new Date();
+      // add 2 minutes
+      startDate.setMinutes(startDate.getMinutes() + 1);
+      endDate.setMinutes(endDate.getMinutes() + 1);
+
+      place.actions.push({
+        name: 'Allumer',
+        description: 'Allumer la lumière',
+        startdAt: startDate,
+        endAt: endDate,
+        isActived: true,
+        image: 'light-on.png'
+      });
+
+      
+    });
+  }
 
   ngOnInit(): void {
     this.initForm();

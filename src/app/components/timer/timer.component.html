@@ -10,12 +10,12 @@
         (input)="updateTimer($event)" />
     <div>    
     <div class="flex items-center">
-        <p class="timeAccelerator mr-5 flex justify-end"><</p>
+        <p class="timeAccelerator mr-5 flex justify-end" (click)="decelearateTime()"><</p>
         <button class="gestioningTime" (click)="substractHalfHour()">- 30 min</button>
         <div class="center-timer flex flex-col items-center">
             <h3 class="mx-10">{{formattedTime(timer)}}</h3>
             <div class="flex items-center">
-                <p class="mr-3">Temps x1</p>
+                <p class="mr-3">Temps x{{accelerationLevel}}</p>
                 <i class='bx bx-reset' (click)="resetTimer()" ></i>
             </div>
         </div>
