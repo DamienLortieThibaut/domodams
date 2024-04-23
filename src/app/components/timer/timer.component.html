@@ -1,3 +1,9 @@
-<button (click)="substractHalfHour()">- 30 min</button>
-{{formattedTime(timer)}}
-<button (click)="addHalfHour()">+ 30 min</button>
+
+<div class="timeline flex flex-col justify-center items-center w-full">
+    <input type="range" class="w-full" min="0" max="1439" [value]="rangeValue" (input)="updateTimer($event)">
+    <div>
+        <button (click)="substractHalfHour()">- 30 min</button>
+        {{formattedTime(timer)}}
+        <button (click)="addHalfHour()">+ 30 min</button>
+    </div>
+</div>

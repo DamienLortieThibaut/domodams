@@ -1,0 +1,19 @@
+header {
+    background-color: black;
+
+    button {
+        background-color: white;
+        color: black;
+        border-radius: 5px;
+    }
+    button#report-problem {
+        color: white;
+        background: none;
+        outline: solid 2px white;
+    }
+
+    button#report-problem:hover {
+        background-color: white;
+        color: black;
+    }
+}
