@@ -6,18 +6,58 @@ import { Component } from '@angular/core';
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
-  socialNetwork = [
+  footerItems: any[] = [
     {
-      path: "../../../assets/tiktok.png",
-      label: "TikTok"
+      name: 'Home',
+      subItems: [
+        {
+          name: 'About',
+          url: '/about'
+        },
+        {
+          name: 'Projects',
+          url: '/projects'
+        },
+        {
+          name: 'Contact',
+          url: '/contact'
+        }
+      ]
     },
     {
-      path: "../../../assets/instagram.png",
-      label: "Instagram"
+      name: 'Social',
+      subItems: [
+        {
+          name: 'Facebook',
+          url: 'https://www.facebook.com'
+        },
+        {
+          name: 'Twitter',
+          url: 'https://www.twitter.com'
+        },
+        {
+          name: 'Instagram',
+          url: 'https://www.instagram.com'
+        }
+      ]
     },
     {
-      path: "../../../assets/facebook.png",
-      label: "Facebook"
+      name: 'Website',
+      subItems: [
+        {
+          name: 'Privacy Policy',
+          url: '/privacy-policy'
+        },
+        {
+          name: 'Terms of Use',
+          url: '/terms-of-use'
+        },
+        {
+          name: 'Sitemap',
+          url: '/sitemap'
+        }
+      ]
     }
-  ];
+]
+
 }
