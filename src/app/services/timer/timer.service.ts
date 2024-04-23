@@ -11,9 +11,7 @@ export class TimerService {
 
   constructor() {
     this.timerInterval = setInterval(() => {
-      for(let i = 0; i < this.accelerationLevel; i++) {
-        this.timer.setSeconds(this.timer.getSeconds() + 1);
-      }
+      this.timer.setSeconds(this.timer.getSeconds() + (1 * this.accelerationLevel)) ;
     }, 1000);
   }
 
@@ -40,5 +38,14 @@ export class TimerService {
   
   setSeconds(): void {
     this.timer.setSeconds(this.timer.getSeconds() + 1);
+  }
+
+  resetTime(): void {
+    this.accelerationLevel = 1;
+    this.timer = new Date();
+  }
+
+  setAccelerationLevel(level: number): void {
+    this.accelerationLevel = level;
   }
 }

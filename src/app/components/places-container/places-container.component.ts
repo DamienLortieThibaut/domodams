@@ -125,7 +125,16 @@ export class PlacesContainerComponent implements OnInit {
     }
   ];
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder) {
+    this.placesData.forEach(place => {
+        const numActions = 5;
+        const durationMinutes = 2;
+        const randomActions = this.generateRandomActions(numActions, durationMinutes);
+        
+        place.actions.push(...randomActions);
+    });
+    console.log(this.placesData);
+}
 
   ngOnInit(): void {
     this.initForm();
@@ -155,7 +164,7 @@ export class PlacesContainerComponent implements OnInit {
         created_at: new Date(),
         updated_at: new Date(),
         logs: [],
-        actions: []
+        actions: [],
       };
       this.placesData.push(nouvellePlace);
       this.form.reset();
@@ -166,6 +175,52 @@ export class PlacesContainerComponent implements OnInit {
 
   ouvrirModal(): void {   
     this.showModal = true;
+  }
+
+  generateRandomActions(numActions: number, durationMinutes: number) {
+    const actions = [];
+    const usedTimes = new Set<string>();
+
+    for (let i = 0; i < numActions; i++) {
+        let randomStart = this.getRandomTime();
+        
+        // Ajouter au moins 15 minutes à l'heure de début pour garantir un écart minimal de 15 minutes
+        let randomEnd = new Date(randomStart.getTime() + (durationMinutes + 15) * 60000);
+
+        while (this.checkTimeOverlap(randomStart, randomEnd, usedTimes)) {
+            randomStart = this.getRandomTime();
+            randomEnd = new Date(randomStart.getTime() + (durationMinutes + 15) * 60000);
+        }
+
+        actions.push({
+            name: 'Allumer',
+            description: 'Allumer la lumière',
+            startdAt: randomStart,
+            endAt: randomEnd,
+            isActived: true,
+            image: 'light-on.png'
+        });
+
+        usedTimes.add([randomStart.getTime(), randomEnd.getTime()].join('-'));
+    }
+
+    return actions;
+}
+
+
+  getRandomTime() {
+    const now = new Date();
+    const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const randomTime = new Date(startOfDay.getTime() + Math.random() * (now.getTime() - startOfDay.getTime()));
+    return randomTime;
+  }
+
+  checkTimeOverlap(start: Date, end: Date, usedTimes: Set<string>) {
+    const interval = [start.getTime(), end.getTime()].join('-');
+    return [...usedTimes].some(usedInterval => {
+        const [usedStart, usedEnd] = usedInterval.split('-').map(Number);
+        return start <= new Date(usedEnd) && end >= new Date(usedStart);
+    });
   }
   
   
