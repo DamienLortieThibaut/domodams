@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TimerService } from '../../services/timer/timer.service';
 
 @Component({
   selector: 'app-timer',
@@ -11,14 +12,13 @@ export class TimerComponent {
   timer = new Date();
   timerInterval: any;
 
-  constructor() {
+  constructor(private timer_service: TimerService) {
     this.timerInterval = setInterval(() => {
-      this.timer.setSeconds(this.timer.getSeconds() + 1);
+      this.timer = this.timer_service.getCurrentTime();
     }, 1000);
   }
 
   ngOnDestroy() {
-    clearInterval(this.timerInterval);
   }
 
   // HH:MM:SS with leading zeros
@@ -30,12 +30,16 @@ export class TimerComponent {
     return `${hours}:${minutes}:${seconds}`;
   }
 
-  addHalfHour() {
-    this.timer.setMinutes(this.timer.getMinutes() + 30);
+  addHalfHour(): void {
+    this.timer_service.addHalfHour();
   }
 
-  substractHalfHour() {
-    this.timer.setMinutes(this.timer.getMinutes() - 30);
+  substractHalfHour(): void {
+    this.timer_service.substractHalfHour();
+  }
+
+  addMinute(): void {
+    this.timer_service.addMinute();
   }
 
 }

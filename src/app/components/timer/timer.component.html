@@ -1,4 +1,5 @@
 
 <app-button (EventEmitter)="substractHalfHour()" label="- 30 min"></app-button>
 {{formattedTime(timer)}}
-<app-button (EventEmitter)="addHalfHour()" [disabled]="true" label="+ 30 min"></app-button>
+<app-button (EventEmitter)="addHalfHour()" label="+ 30 min"></app-button>
+<app-button (EventEmitter)="addMinute()" label="+ 1 min"></app-button>
