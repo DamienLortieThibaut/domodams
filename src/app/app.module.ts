@@ -1,32 +1,28 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core'
+import {BrowserModule} from '@angular/platform-browser'
 
-import { AppRoutingModule } from './pages/app-page/app-routing.module';
-import { AppComponent } from './pages/app-page/app.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { ButtonComponent } from './components/button/button.component';
-import { RowComponent } from './components/row/row.component';
-import { LogsComponent } from './components/logs/logs.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { TimerComponent } from './components/timer/timer.component';
+import {AppRoutingModule} from './pages/app-page/app-routing.module'
+import {AppComponent} from './pages/app-page/app.component'
+import {HeaderComponent} from './components/header/header.component'
+import {FooterComponent} from './components/footer/footer.component'
+import {ButtonComponent} from './components/button/button.component'
+import {RowComponent} from './components/row/row.component'
+import {LogsComponent} from './components/logs/logs.component'
+import {ReactiveFormsModule} from '@angular/forms'
+import {TimerComponent} from './components/timer/timer.component'
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    ButtonComponent,
-    RowComponent,
-    LogsComponent,
-    TimerComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        FooterComponent,
+        ButtonComponent,
+        RowComponent,
+        LogsComponent,
+        TimerComponent,
+    ],
+    imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
+    providers: [],
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

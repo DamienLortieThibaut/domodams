@@ -1,10 +1,16 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core'
 
 @Component({
-  selector: 'app-button',
-  templateUrl: './button.component.html',
-  styleUrl: './button.component.scss'
+    selector: 'app-button',
+    templateUrl: './button.component.html',
+    styleUrl: './button.component.scss',
 })
 export class ButtonComponent {
+    @Input() label: string
+    @Input() disabled: boolean
+    @Input() class: string
 
+    action() {
+        alert('Bouton appuyé.')
+    }
 }
