@@ -1,82 +1,102 @@
-import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
-import { Place } from '../../models/place';
-import { TimerService } from '../../services/timer/timer.service';
-import { LogService } from '../../services/log-service/log.service';
-import { Log } from '../../models/log';
+import {Component, Input, OnInit, EventEmitter, Output} from '@angular/core'
+import {Place} from '../../models/place'
+import {TimerService} from '../../services/timer/timer.service'
+import {LogService} from '../../services/log-service/log.service'
+import {Log} from '../../models/log'
 
 @Component({
-  selector: 'app-row-place',
-  templateUrl: './row-place.component.html',
-  styleUrl: './row-place.component.scss'
+    selector: 'app-row-place',
+    templateUrl: './row-place.component.html',
+    styleUrl: './row-place.component.scss',
 })
-export class RowPlaceComponent implements OnInit{
-  @Input() place: Place;
-  
-  @Output() supprimer = new EventEmitter<Place>();
+export class RowPlaceComponent implements OnInit {
+    @Input() place: Place
 
-  interval: any;
-  currentState: boolean = false;
-  forcedState: boolean = false;
+    @Output() supprimer = new EventEmitter<Place>()
 
-  constructor(
-    private timer_service: TimerService,
-    private log_service: LogService
-  ) {
-   
-  }
+    interval: any
+    currentState: boolean = false
+    forcedState: boolean = false
+    show: boolean = false
 
-  ngOnInit(): void {
-    setInterval(() => {
-     this.update();
-    }, 1000);
-  }
+    constructor(
+        private timer_service: TimerService,
+        private log_service: LogService
+    ) {}
 
-  update(): void {
-    let currentDate = this.timer_service.getCurrentTime();
+    ngOnInit(): void {
+        setInterval(() => {
+            this.update()
+        }, 1000)
+    }
 
-    let currentTime = currentDate.getHours() + ":" + currentDate.getMinutes();
+    update(): void {
+        let currentDate = this.timer_service.getCurrentTime()
 
-    this.place.actions.forEach(action => {
+        let currentTime =
+            currentDate.getHours() + ':' + currentDate.getMinutes()
 
-      if(this.forcedState) return;
-      let startTime = action.startdAt.getHours() + ":" + action.startdAt.getMinutes();
-      let endTime = action.endAt.getHours() + ":" + action.endAt.getMinutes();
+        this.place.actions.forEach((action) => {
+            if (this.forcedState) return
+            let startTime =
+                action.startdAt.getHours() + ':' + action.startdAt.getMinutes()
+            let endTime =
+                action.endAt.getHours() + ':' + action.endAt.getMinutes()
 
-      console.log(currentTime >= startTime && currentTime <= endTime)
-      if (currentTime >= startTime && currentTime <= endTime) {
-        if(!this.currentState) {
-          let log: Log = {
-            text: "Allumage de " + this.place.name + " à " + new Date().getHours() + ":" + new Date().getMinutes(),
-            created_at: currentDate
-          }
-  
-          this.log_service.addLog(log);
-        }
-        this.currentState = action.isActived;
-        
-       
-      } else {
-        if(this.currentState) {
-          
-          this.currentState = false;
-          let log: Log = {
-            text: "Extinction de " + this.place.name + " à " + new Date().getHours() + ":" + new Date().getMinutes(),
-            created_at: currentDate
-          }
+            console.log(currentTime >= startTime && currentTime <= endTime)
+            if (currentTime >= startTime && currentTime <= endTime) {
+                if (!this.currentState) {
+                    let log: Log = {
+                        text:
+                            'Allumage de ' +
+                            this.place.name +
+                            ' à ' +
+                            new Date().getHours() +
+                            ':' +
+                            new Date().getMinutes(),
+                        created_at: currentDate,
+                    }
 
-          this.log_service.addLog(log);
-        }
-        
-      }
-    });
-  }
+                    this.log_service.addLog(log)
+                }
+                this.currentState = action.isActived
+            } else {
+                if (this.currentState) {
+                    this.currentState = false
+                    let log: Log = {
+                        text:
+                            'Extinction de ' +
+                            this.place.name +
+                            ' à ' +
+                            new Date().getHours() +
+                            ':' +
+                            new Date().getMinutes(),
+                        created_at: currentDate,
+                    }
 
-  forceState(): void {
-    this.forcedState = !this.forcedState;
-    this.log_service.addLog({
-      text: "Forçage de " + this.place.name + " à " + new Date().getHours() + ":" + new Date().getMinutes(),
-      created_at: this.timer_service.getCurrentTime()
-    });
-    this.currentState = this.forcedState;
-  }
+                    this.log_service.addLog(log)
+                }
+            }
+        })
+    }
+
+    forceState(): void {
+        this.forcedState = !this.forcedState
+        this.log_service.addLog({
+            text:
+                'Forçage de ' +
+                this.place.name +
+                ' à ' +
+                new Date().getHours() +
+                ':' +
+                new Date().getMinutes(),
+            created_at: this.timer_service.getCurrentTime(),
+        })
+        this.currentState = this.forcedState
+    }
+
+    showSettings(): void {
+        console.log(this.place.name)
+        this.show = !this.show
+    }
 }
