@@ -10,6 +10,8 @@ import { RowComponent } from './components/row/row.component';
 import { LogsComponent } from './components/logs/logs.component';
 import { RowPlaceComponent } from './components/row-place/row-place.component';
 import { PlacesContainerComponent } from './components/places-container/places-container.component';
+import {ReactiveFormsModule} from '@angular/forms'
+import {TimerComponent} from './components/timer/timer.component'
  
 @NgModule({
   declarations: [
@@ -20,11 +22,13 @@ import { PlacesContainerComponent } from './components/places-container/places-c
     RowComponent,
     LogsComponent,
     RowPlaceComponent,
-    PlacesContainerComponent
+    PlacesContainerComponent,
+    TimerComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
