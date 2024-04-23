@@ -7,6 +7,7 @@ import { Place } from '../../models/place';
   styleUrl: './places-container.component.scss'
 })
 export class PlacesContainerComponent {
+
   placesData: Place[] = [
     {
       name: 'Salle de Bain',
@@ -18,7 +19,6 @@ export class PlacesContainerComponent {
        
       ],
       actions: [
-      
       ]
     },
     {
@@ -118,6 +118,26 @@ export class PlacesContainerComponent {
     }
   ];
 
+  constructor() {
+    this.placesData.forEach(place => {
+      let startDate = new Date();
+      let endDate = new Date();
+      // add 2 minutes
+      startDate.setMinutes(startDate.getMinutes() + 1);
+      endDate.setMinutes(endDate.getMinutes() + 1);
+
+      place.actions.push({
+        name: 'Allumer',
+        description: 'Allumer la lumière',
+        startdAt: startDate,
+        endAt: endDate,
+        isActived: true,
+        image: 'light-on.png'
+      });
+
+      
+    });
+  }
   supprimerPlace(place: Place): void {
     this.placesData = this.placesData.filter(p => p !== place);
   }
