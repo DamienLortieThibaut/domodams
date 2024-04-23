@@ -12,6 +12,7 @@ import {PlacesContainerComponent} from './components/places-container/places-con
 import {ReactiveFormsModule} from '@angular/forms'
 import {TimerComponent} from './components/timer/timer.component'
 import {TimelineComponent} from './components/timeline/timeline.component'
+import {FormComponent} from './components/form/form.component'
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import {TimelineComponent} from './components/timeline/timeline.component'
         PlacesContainerComponent,
         TimerComponent,
         TimelineComponent,
+        FormComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
     providers: [],

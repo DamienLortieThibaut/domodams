@@ -1,12 +1,12 @@
-<div class="flex justify-center items-center h-screen">
-    <app-button
-        label="Signaler un problème"
-        class="px-4 py-2 bg-indigo-500 text-white rounded-md"
-        (click)="showModal()">
-    </app-button>
+<app-button
+    label="Signaler un problème"
+    class="px-4 py-2 bg-indigo-500 text-white rounded-md font-semibold"
+    (click)="showModal()">
+</app-button>
+
+<div class="flex justify-center items-center h-screen absolute" *ngIf="show">
     <div
-        class="fixed inset-0 px-2 z-10 overflow-hidden flex items-center justify-center"
-        *ngIf="show">
+        class="fixed inset-0 px-2 z-10 overflow-hidden flex items-center justify-center">
         <div
             class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
         <div
@@ -32,6 +32,7 @@
                             <input
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 id="firstName"
+                                formControlName="firstName"
                                 type="text"
                                 placeholder="John" />
                         </div>
@@ -44,6 +45,7 @@
                             <input
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 id="lastName"
+                                formControlName="lastName"
                                 type="text"
                                 placeholder="Doe" />
                         </div>
@@ -58,17 +60,26 @@
                             <input
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 id="message"
+                                formControlName="message"
                                 type="text"
                                 placeholder="Saisissez votre message" />
                         </div>
                     </div>
-                    <p>Complétez le formulaire afin de pouvoir le soumettre</p>
-                    <div class="border-t px-4 py-2 flex justify-end">
+                    <p class="text-black">
+                        Complétez le formulaire afin de pouvoir le soumettre
+                    </p>
+                    <div class="border-t px-4 py-2 flex justify-end gap-2">
                         <button
                             type="submit"
+                            class="px-4 py-2 bg-indigo-500 text-white rounded-md font-semibold"
                             [disabled]="!signalementForm.valid">
                             Soumettre
                         </button>
+                        <app-button
+                            label="Retour"
+                            class="px-4 py-2 bg-gray-500 text-white rounded-md font-semibold"
+                            (click)="showModal()">
+                        </app-button>
                     </div>
                 </form>
             </div>

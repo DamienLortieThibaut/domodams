@@ -1,5 +1,5 @@
 import {Component} from '@angular/core'
-import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms'
+import {Validators, FormBuilder} from '@angular/forms'
 
 @Component({
     selector: 'app-form',
@@ -9,10 +9,10 @@ import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms'
 export class FormComponent {
     show: boolean = false
 
-    signalementForm = new FormGroup({
-        firstName: new FormControl(''),
-        lastName: new FormControl(''),
-        message: new FormControl(''),
+    signalementForm = this.formBuilder.group({
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        message: ['', Validators.required],
     })
 
     onSubmit() {
@@ -25,4 +25,6 @@ export class FormComponent {
     showModal() {
         this.show = !this.show
     }
+
+    constructor(private formBuilder: FormBuilder) {}
 }
