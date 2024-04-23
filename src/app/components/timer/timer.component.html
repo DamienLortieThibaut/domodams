@@ -1,3 +1,4 @@
-<button (click)="substractHalfHour()">- 30 min</button>
+
+<app-button (EventEmitter)="substractHalfHour()" label="- 30 min"></app-button>
 {{formattedTime(timer)}}
-<button (click)="addHalfHour()">+ 30 min</button>
+<app-button (EventEmitter)="addHalfHour()" [disabled]="true" label="+ 30 min"></app-button>
