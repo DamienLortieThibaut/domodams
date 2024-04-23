@@ -7,6 +7,12 @@ import { Place } from '../../models/place';
   styleUrl: './places-container.component.scss'
 })
 export class PlacesContainerComponent {
+
+  showModal: boolean = false;
+  nouvellePlace: { nom: string, image: string } = { nom: '', image: '' };
+  images: string[] = ['../../../assets/bathroom.png', '../../../assets/bedroom.png', '../../../assets/dining-room.png'];
+
+  
   placesData: Place[] = [
     {
       name: 'Salle de Bain',
@@ -122,4 +128,20 @@ export class PlacesContainerComponent {
     this.placesData = this.placesData.filter(p => p !== place);
   }
   
+  ajouterPlace(): void {
+    const nouvellePlace: Place = {
+      name: 'Nouvelle Place',
+      image: 'default.png',
+      description: '',
+      created_at: new Date(),
+      updated_at: new Date(),
+      logs: [],
+      actions: []
+    };
+    this.placesData.push(nouvellePlace);
+  }
+
+  ouvrirModal(): void {
+    this.showModal = true;
+  }
 }

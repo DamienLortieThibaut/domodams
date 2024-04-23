@@ -1,8 +1,42 @@
 <div class="places-container w-full">
-    <h1>Liste des lieux</h1>
-    
-    <div *ngFor="let place of placesData" class="place-card">
-      <app-row-place [place]="place" (supprimer)="supprimerPlace($event)"></app-row-place>
-    </div>
-    
+  <h1>Liste des lieux</h1>
+
+  <div *ngFor="let place of placesData" class="place-card">
+    <app-row-place
+      [place]="place"
+      (supprimer)="supprimerPlace($event)"
+    ></app-row-place>
   </div>
+  <button (click)="ouvrirModal()">Ajouter une Place</button>
+  
+  <div *ngIf="showModal" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="showModal = false">&times;</span>
+      <h2>Ajouter une Place</h2>
+      <form (ngSubmit)="ajouterPlace()">
+        <label for="nomPlace">Nom de la Place:</label>
+        <input
+          type="text"
+          id="nomPlace"
+          [(ngModel)]="nouvellePlace.nom"
+          name="nomPlace"
+          required
+        />
+
+        <label for="imagePlace">Image de la Place:</label>
+        <select
+          id="imagePlace"
+          [(ngModel)]="nouvellePlace.image"
+          name="imagePlace"
+          required
+        >
+          <option *ngFor="let image of images" [value]="image">
+            {{ image }}
+          </option>
+        </select>
+
+        <button type="submit">Ajouter</button>
+      </form>
+    </div>
+  </div>
+</div>
