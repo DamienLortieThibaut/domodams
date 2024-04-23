@@ -8,6 +8,8 @@ import {FooterComponent} from './components/footer/footer.component'
 import {ButtonComponent} from './components/button/button.component'
 import {RowComponent} from './components/row/row.component'
 import {LogsComponent} from './components/logs/logs.component'
+import {ReactiveFormsModule} from '@angular/forms'
+import {TimerComponent} from './components/timer/timer.component'
 
 @NgModule({
     declarations: [
@@ -17,8 +19,9 @@ import {LogsComponent} from './components/logs/logs.component'
         ButtonComponent,
         RowComponent,
         LogsComponent,
+        TimerComponent,
     ],
-    imports: [BrowserModule, AppRoutingModule],
+    imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
     providers: [],
     bootstrap: [AppComponent],
 })
