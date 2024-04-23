@@ -29,5 +29,13 @@ export class TimerService {
   addMinute(): void {
     this.timer.setMinutes(this.timer.getMinutes() + 1);
   }
+
+  setTime(hours: number, minutes: number): void {
+    this.timer.setHours(hours);
+    this.timer.setMinutes(minutes);
+  }
   
+  setSeconds(): void {
+    this.timer.setSeconds(this.timer.getSeconds() + 1);
+  }
 }

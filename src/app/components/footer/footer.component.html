@@ -1,13 +1,8 @@
-<footer class="bg-cyan-500 py-6 px-8 text-white fixed bottom-0 left-0 w-full">
-  <div class="flex justify-between items-center">
-    <div class="flex items-center space-x-4">
-      <img
-        *ngFor="let network of socialNetwork"
-        [src]="network.path"
-        [alt]="network.label"
-        class="h-6 w-auto"
-      />
-    </div>
-    <a href="#" class="text-sm font-bold">CGU</a>
-  </div>
+<footer class="bg-cyan-500 footer p-3 text-white">
+    <ng-container *ngFor="let item of footerItems">
+        <div class="flex flex-col">
+            <h5 class="font-bold">{{ item.name }}</h5>
+            <a *ngFor="let subItem of item.subItems" [href]="subItem.url" class="text-decoration-none">{{ subItem.name }}</a>
+        </div>
+    </ng-container>
 </footer>

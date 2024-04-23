@@ -1,4 +1,4 @@
-import { Component, Input, OnInit  } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { Place } from '../../models/place';
 import { TimerService } from '../../services/timer/timer.service';
 import { LogService } from '../../services/log-service/log.service';
@@ -11,9 +11,12 @@ import { Log } from '../../models/log';
 })
 export class RowPlaceComponent implements OnInit{
   @Input() place: Place;
+  
+  @Output() supprimer = new EventEmitter<Place>();
 
   interval: any;
   currentState: boolean = false;
+  forcedState: boolean = false;
 
   constructor(
     private timer_service: TimerService,
@@ -35,6 +38,7 @@ export class RowPlaceComponent implements OnInit{
 
     this.place.actions.forEach(action => {
 
+      if(this.forcedState) return;
       let startTime = action.startdAt.getHours() + ":" + action.startdAt.getMinutes();
       let endTime = action.endAt.getHours() + ":" + action.endAt.getMinutes();
 
@@ -65,5 +69,14 @@ export class RowPlaceComponent implements OnInit{
         
       }
     });
+  }
+
+  forceState(): void {
+    this.forcedState = !this.forcedState;
+    this.log_service.addLog({
+      text: "Forçage de " + this.place.name + " à " + new Date().getHours() + ":" + new Date().getMinutes(),
+      created_at: this.timer_service.getCurrentTime()
+    });
+    this.currentState = this.forcedState;
   }
 }
