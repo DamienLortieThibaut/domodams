@@ -11,7 +11,6 @@ import { RowPlaceComponent } from './components/row-place/row-place.component';
 import { PlacesContainerComponent } from './components/places-container/places-container.component';
 import {ReactiveFormsModule} from '@angular/forms'
 import {TimerComponent} from './components/timer/timer.component';
-import { TimelineComponent } from './components/timeline/timeline.component'
  
 @NgModule({
   declarations: [
@@ -23,7 +22,6 @@ import { TimelineComponent } from './components/timeline/timeline.component'
     RowPlaceComponent,
     PlacesContainerComponent,
     TimerComponent,
-    TimelineComponent
   ],
   imports: [
     BrowserModule,

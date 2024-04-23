@@ -62,4 +62,6 @@ export class TimerComponent {
     this.rangeValue = hours * 60 + minutes;
   }
 
+
+
 }

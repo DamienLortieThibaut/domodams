@@ -1,5 +1,5 @@
 <div class="places-container w-full">
-    <h1>Liste des lieux</h1>
+    <h1 class="mb-5 font-bold text-2xl">Liste des lieux</h1>
     
     <div *ngFor="let place of placesData" class="place-card">
       <app-row-place [place]="place" (supprimer)="supprimerPlace($event)"></app-row-place>

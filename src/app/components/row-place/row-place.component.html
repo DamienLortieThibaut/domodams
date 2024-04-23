@@ -1,10 +1,11 @@
 <div class="row-place flex items-center justify-between mb-2">
     <div class="flex items-center">
-        <img  class="mr-3" src="../../../assets/{{place.image}}" alt="{{place.name}}">
+        <img class="mr-3 isDisabled" src="../../../assets/{{place.image}}" alt="{{place.name}}">
         <h3>{{ place.name }}</h3>
     </div>
-    <div>
-        <button>Forcage</button>
-        <button (click)="supprimer.emit(place)">Supprimer</button>
+    <div class="flex items-center">
+        <i class='bx bxs-cog'></i>
+        <button class="activation">Forcer l'activation</button>
+        <button class="delete" (click)="supprimer.emit(place)">Supprimer</button>
     </div>
 </div>

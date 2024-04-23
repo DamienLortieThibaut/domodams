@@ -1,7 +1,64 @@
 .row-place {
+    padding-bottom: 10px;
+    border-bottom: solid 0.5px grey;
+
+    h3 {
+        font-size: 20px;
+    }
     img {
         width: 70px;
         border-radius: 100%;
         
+    }
+
+    img.isActive {
+        outline: solid 2px green;
+    }
+    img.isDisabled {
+        outline: solid 2px red;
+    }
+
+    .delete {
+        color: red;
+        border-radius: 5px;
+        background: none;
+        outline: solid 2px red;
+        padding: 5px 10px;
+    }
+    .delete:hover {
+        color: white;
+        background: red;
+    }
+
+    i.bxs-cog {
+        color: grey;
+        font-size: 25px;
+        cursor: pointer;
+    }
+    i.bxs-cog:hover {
+        animation: rotate 1s;
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    }
+
+    .activation {
+        color: green;
+        border-radius: 5px;
+        background: none;
+        outline: solid 2px green;
+        padding: 5px 10px;
+        margin: 0px 15px;
+
+    }
+    .activation:hover {
+        color: white;
+        background: green;
     }
 }
