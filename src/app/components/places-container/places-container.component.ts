@@ -12,6 +12,7 @@ export class PlacesContainerComponent implements OnInit {
   showModal: boolean = false;
   form: FormGroup;
   images: string[] = ['../../../assets/bathroom.png', '../../../assets/bedroom.png', '../../../assets/dining-room.png'];
+  actions: string[] = ['Allumer la lumière', 'Allumer la télévision', 'Allumer le chauffage']
   selectedImage: string = '';
   
   placesData: Place[] = [
@@ -143,6 +144,9 @@ export class PlacesContainerComponent implements OnInit {
   initForm(): void {
     this.form = this.formBuilder.group({
       namePlace: ['', Validators.required],
+      action: ['', Validators.required],
+      startAt: ['', Validators.required],
+      endAt: ['', Validators.required]
     });
   }
 
@@ -160,9 +164,9 @@ export class PlacesContainerComponent implements OnInit {
       const nouvellePlace: Place = {
         name: formData.namePlace,
         image: this.selectedImage,
-        description: '',
-        created_at: new Date(),
-        updated_at: new Date(),
+        description: formData.action,
+        created_at: formData.startAt,
+        updated_at: formData.endAt,
         logs: [],
         actions: [],
       };
@@ -171,6 +175,8 @@ export class PlacesContainerComponent implements OnInit {
       this.selectedImage = '';
       this.showModal = false;
     }
+    console.log(this.placesData);
+    
   }
 
   ouvrirModal(): void {   
