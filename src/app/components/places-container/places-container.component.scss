@@ -36,8 +36,9 @@ label{
   display: block;
 }
 
-input{
+input,select,img{
   display: block;
+  margin-bottom: 10px;
 }
 
 button{

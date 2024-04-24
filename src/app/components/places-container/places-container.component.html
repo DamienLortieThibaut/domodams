@@ -1,5 +1,5 @@
 <div class="places-container w-full">
-  <h1>Liste des lieux</h1>
+  <h1 class="text-2xl font-bold mb-5">Liste des lieux</h1>
 
   <div *ngFor="let place of placesData" class="place-card">
     <app-row-place
@@ -7,27 +7,50 @@
       (supprimer)="supprimerPlace($event)"
     ></app-row-place>
   </div>
-  <button (click)="ouvrirModal()">Ajouter une Place</button>
+  <button
+    (click)="ouvrirModal()"
+    class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded my-10"
+  >
+    Ajouter une Place
+  </button>
 
   <div *ngIf="showModal" class="modal">
     <div class="modal-content">
       <span class="close" (click)="showModal = false">&times;</span>
       <h2 class="font-bold text-2xl">Ajouter un élément</h2>
       <form [formGroup]="form" (ngSubmit)="ajouterPlace()">
-        <label for="nomPlace">Nom de l'élement à ajouter:</label>
+        <label for="nomPlace">Nom de l'élement à ajouter</label>
         <input
           type="text"
           id="nomPlace"
           name="nomPlace"
           formControlName="namePlace"
-          class="border-2 border-black-500"
+          class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-cyan-500"
           required
         />
-        <label for="imagePlace">Sélectionner la photo:</label>
+        <label for="imagePlace">Sélectionner la photo</label>
         <div>
-          <img *ngFor="let image of images" [src]="image" [class.selected]="selectedImage === image" (click)="updateValueImage(image)" class="w-1/6 rounded-lg mx-10">
+          <img
+            *ngFor="let image of images"
+            [src]="image"
+            [class.selected]="selectedImage === image"
+            (click)="updateValueImage(image)"
+            class="w-1/6 rounded-lg mx-10"
+          />
         </div>
-        <button type="submit">Ajouter</button>
+        <div class="inline-block relative w-64">
+          <select formControlName="action" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+            <option *ngFor="let description of actions" [value]="description">{{description}}</option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+          </div>
+        </div>
+        <label for="startAt">Heure de démarrage</label>
+        <input type="time" name="startAt" formControlName="startAt" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-cyan-500" required />
+        <label for="endAt">Heure d'arrêt</label>
+        <input type="time" name="endAt" formControlName="endAt" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-cyan-500" required />
+        <button type="submit" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded mt-5">Ajouter</button>
       </form>
     </div>
   </div>
