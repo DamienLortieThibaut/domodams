@@ -63,7 +63,11 @@
                                 *ngFor="let action of place.actions">
                                 <td>
                                     <div
+                                        *ngIf="!action.isActived"
                                         class="rounded-lg bg-red-500 w-4 h-4"></div>
+                                    <div
+                                        *ngIf="action.isActived"
+                                        class="rounded-lg bg-green-500 w-4 h-4"></div>
                                 </td>
                                 <td>
                                     <input
