@@ -1,0 +1,15 @@
+<div style="height: 80vh;">
+<form [formGroup]="instructionForm" class="form">
+    <div class="form-group">
+        <label for="instruction">Instruction</label>
+        <input type="text" id="instruction" formControlName="instruction" class="form-control" />
+    </div>
+    <button (click)="saveIntruction()" class="btn btn-primary">Ajouter</button>
+</form>
+<div *ngIf="instructions">
+    <ul class="list-group">
+        <li *ngFor="let instruction of instructions" class="list-group-item">
+            {{ instruction }}
+        </li>
+    </ul>
+</div>
