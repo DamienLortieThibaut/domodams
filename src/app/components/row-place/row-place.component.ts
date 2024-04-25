@@ -19,6 +19,7 @@ export class RowPlaceComponent implements OnInit {
     interval: any
     currentState: boolean = false
     forcedState: boolean = false
+    forced: boolean = false
     show: boolean = false
 
     constructor(
@@ -42,6 +43,7 @@ export class RowPlaceComponent implements OnInit {
 
         // Réinitialiser l'état actuel avant de commencer la boucle
         let newState = false
+        if(this.forced) return
         if (this.forcedState) return
 
         this.place.actions.forEach((action) => {
@@ -88,7 +90,8 @@ export class RowPlaceComponent implements OnInit {
     }
 
     forceState(): void {
-        this.forcedState = !this.forcedState
+        this.forced = true;
+        this.forcedState = !this.currentState
         if(this.forcedState) {
             this.log_service.addLog({
                 text:
@@ -100,6 +103,8 @@ export class RowPlaceComponent implements OnInit {
                     new Date().getMinutes(),
                 created_at: this.timer_service.getCurrentTime(),
             })
+            
+            this.currentState = true
         } else {
             this.log_service.addLog({
                 text:
@@ -111,11 +116,16 @@ export class RowPlaceComponent implements OnInit {
                     new Date().getMinutes(),
                 created_at: this.timer_service.getCurrentTime(),
             })
+            this.currentState = false;
         }
-        this.currentState = this.forcedState
     }
 
     showSettings(): void {
         this.show = !this.show
+    }
+
+    stopForce(): void {
+        this.forced = false
+        this.forcedState = false
     }
 }
