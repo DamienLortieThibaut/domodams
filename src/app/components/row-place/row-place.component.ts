@@ -4,6 +4,7 @@ import {TimerService} from '../../services/timer/timer.service'
 import {LogService} from '../../services/log-service/log.service'
 import {Log} from '../../models/log'
 
+
 @Component({
     selector: 'app-row-place',
     templateUrl: './row-place.component.html',
@@ -11,6 +12,7 @@ import {Log} from '../../models/log'
 })
 export class RowPlaceComponent implements OnInit {
     @Input() place: Place
+    
 
     @Output() supprimer = new EventEmitter<Place>()
 
@@ -25,6 +27,9 @@ export class RowPlaceComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
+   
+        console.log('Contenu de place :', this.place); // Utilisez console.log pour afficher le contenu de place
+
         this.currentState = false
         setInterval(() => {
             this.update()
