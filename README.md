@@ -1,7 +1,7 @@
 # domodams 🏠💡
 
 ## Description
-domodams est une application web développée avec le framework Symfony qui permet de gérer diverses fonctionnalités liées à la domotique dans une maison. L'application offre une interface conviviale pour contrôler et surveiller différents équipements et capteurs, ainsi que pour automatiser certaines tâches.
+domodams est une application web développée avec le framework Angular qui permet de gérer diverses fonctionnalités liées à la domotique dans une maison. L'application offre une interface conviviale pour contrôler et surveiller différents équipements et capteurs, ainsi que pour automatiser certaines tâches.
 
 ## Fonctionnalités
 - Gestion des utilisateurs : Inscription, connexion, gestion de profil.
