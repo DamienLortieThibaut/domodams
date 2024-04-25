@@ -37,9 +37,10 @@ export class RowPlaceComponent implements OnInit {
 
         // Réinitialiser l'état actuel avant de commencer la boucle
         let newState = false
+        if (this.forcedState) return
 
         this.place.actions.forEach((action) => {
-            if (this.forcedState) return
+            
 
             let startTime =
                 action.startdAt.getHours() * 60 + action.startdAt.getMinutes()
@@ -83,16 +84,29 @@ export class RowPlaceComponent implements OnInit {
 
     forceState(): void {
         this.forcedState = !this.forcedState
-        this.log_service.addLog({
-            text:
-                'Forçage de ' +
-                this.place.name +
-                ' à ' +
-                new Date().getHours() +
-                ':' +
-                new Date().getMinutes(),
-            created_at: this.timer_service.getCurrentTime(),
-        })
+        if(this.forcedState) {
+            this.log_service.addLog({
+                text:
+                    'Forçage de ' +
+                    this.place.name +
+                    ' à ' +
+                    new Date().getHours() +
+                    ':' +
+                    new Date().getMinutes(),
+                created_at: this.timer_service.getCurrentTime(),
+            })
+        } else {
+            this.log_service.addLog({
+                text:
+                    'Extinction de ' +
+                    this.place.name +
+                    ' à ' +
+                    new Date().getHours() +
+                    ':' +
+                    new Date().getMinutes(),
+                created_at: this.timer_service.getCurrentTime(),
+            })
+        }
         this.currentState = this.forcedState
     }
 

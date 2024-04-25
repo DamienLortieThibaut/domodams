@@ -2,15 +2,18 @@
     <div class="flex items-center">
         <img
             class="mr-3"
-            src="../../../assets/{{ place.image }}"
-            alt="{{ place.name }}" />
+            [src]="'../../../assets/' + place.image"
+            alt="{{ place.name }}"
+            [ngClass]="{ 'isActive': currentState, 'isDisabled': !currentState }" />
         <h3>{{ place.name }}</h3>
     </div>
-    <div class="flex items-center">Active: {{ currentState }}</div>
     <div>
         <i class="bx bxs-cog" (click)="showSettings()"></i>
-        <button class="activation" (click)="forceState()">
+        <button *ngIf="!currentState" class="activation mx-10" (click)="forceState(true)">
             Forcer l'activation
+        </button>
+        <button *ngIf="currentState" class="delete mx-10" (click)="forceState(false)">
+            Eteindre l'activité
         </button>
         <button class="delete" (click)="supprimer.emit(place)">
             Supprimer
