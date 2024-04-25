@@ -8,6 +8,8 @@ import {Validators, FormBuilder} from '@angular/forms'
 })
 export class FormComponent {
     show: boolean = false
+    
+    constructor(private formBuilder: FormBuilder) {}
 
     signalementForm = this.formBuilder.group({
         firstName: ['', Validators.required],
@@ -26,5 +28,4 @@ export class FormComponent {
         this.show = !this.show
     }
 
-    constructor(private formBuilder: FormBuilder) {}
 }
