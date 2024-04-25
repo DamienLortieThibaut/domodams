@@ -111,7 +111,6 @@ export class RowPlaceComponent implements OnInit {
     }
 
     showSettings(): void {
-        console.log(this.place.name)
         this.show = !this.show
     }
 }
