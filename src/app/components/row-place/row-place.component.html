@@ -9,9 +9,13 @@
     </div>
     <div>
         <i class="bx bxs-cog" (click)="showSettings()"></i>
+        <button *ngIf="forced" (click)="stopForce()">
+            <i class='bx bx-reset'></i>
+        </button>
         <button *ngIf="!currentState" class="activation mx-10" (click)="forceState(true)">
             Forcer l'activation
         </button>
+       
         <button *ngIf="currentState" class="delete mx-10" (click)="forceState(false)">
             Eteindre l'activité
         </button>
